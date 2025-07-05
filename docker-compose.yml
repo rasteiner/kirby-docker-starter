@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend
+      args:
+        GID: ${GID:-1000}
+        UID: ${UID:-1000}
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/www:/var/www/html
+    
+
+  frontend_dev_compiler:
+    build:
+      context: ./
+      dockerfile: Dockerfile.frontend_dev_compiler
+      args:
+        GID: ${GID:-1000}
+        UID: ${UID:-1000}
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./frontend:/app
+    command: ["bun", "run", "build"]
+    profiles:
+      - dev

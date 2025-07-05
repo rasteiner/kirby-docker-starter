@@ -1,0 +1,9 @@
+frontend/www/storage/
+!frontend/www/storage/.gitkeep
+frontend/www/public/media/
+frontend/www/vendor
+frontend/www/kirby
+frontend/www/public/assets/css/
+frontend/www/public/assets/js/
+
+frontend/node_modules/

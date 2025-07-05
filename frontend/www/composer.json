@@ -1,0 +1,17 @@
+{
+    "name": "apton/fideconto",
+    "type": "project",
+    "require": {
+        "getkirby/cms": "5.0.1"
+    },
+    "authors": [
+        {
+            "name": "Roman Steiner"
+        }
+    ],
+    "config": {
+        "allow-plugins": {
+            "getkirby/composer-installer": true
+        }
+    }
+}
