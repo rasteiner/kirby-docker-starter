@@ -2,7 +2,8 @@
     "name": "apton/fideconto",
     "type": "project",
     "require": {
-        "getkirby/cms": "5.1.3"
+        "getkirby/cms": "5.1.3",
+        "johannschopplich/kirby-hashed-assets": "^3.0"
     },
     "authors": [
         {

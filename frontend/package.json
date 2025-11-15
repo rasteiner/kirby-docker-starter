@@ -1,11 +1,12 @@
 {
-    "scripts": {
-        "dev": "npm-run-all --parallel dev:css dev:js",
-        "dev:css": "postcss src/css/main.css -o www/public/assets/css/main.css --watch",
-        "dev:js": "bun build src/js/main.js --outdir www/public/assets/js --watch",
-        "build": "NODE_ENV=production npm-run-all --parallel build:css build:js",
-        "build:css": "postcss src/css/main.css -o www/public/assets/css/main.css",
-        "build:js": "bun build src/js/main.js --outdir www/public/assets/js --minify"
+    "scripts": {        
+        "dev": "npm-run-all --serial build:clean --parallel dev:css dev:js",
+        "dev:css": "postcss src/css/main.css src/css/templates/*.css --dir www/public/assets/css --base src/css --watch",
+        "dev:js": "bun build --entrypoints src/js/main.ts src/js/templates/*.ts --outdir www/public/assets/js --watch",
+        "build": "NODE_ENV=production npm-run-all --serial build:clean --parallel build:css build:js",
+        "build:clean": "rm -rf www/public/assets/js www/public/assets/css",
+        "build:css": "postcss src/css/main.css src/css/templates/*.css --dir www/public/assets/css --base src/css",
+        "build:js": "bun build --entrypoints src/js/main.ts src/js/templates/*.ts --outdir www/public/assets/js --minify --entry-naming ./[dir]/[name].[hash].[ext]"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.1.11",
@@ -14,6 +15,7 @@
         "npm-run-all": "^4.1.5",
         "postcss": "^8.5.6",
         "postcss-cli": "^11.0.1",
+        "postcss-hash": "^3.0.0",
         "tailwindcss": "^4.1.11"
     }
 }
